@@ -33,26 +33,93 @@ A web app with two modes:
 | Watchlist | Buy-below / sell-above price alerts and a diversification checker (concentration, sector weight, home bias). |
 | Tax & accounts 🍁 | TFSA, RRSP, FHSA, RESP, non-registered; 50% capital gains inclusion, superficial loss rule, dividend tax credit, US withholding tax, T1135, currency costs, and an asset-location cheat sheet. |
 
-## Getting started
+## How to run it
+
+### 1. One-time setup
+
+You need **Node.js 22 or newer** ([nodejs.org](https://nodejs.org)). Check with:
+
+```bash
+node -v
+```
+
+Download the code and go into the folder:
+
+```bash
+git clone https://github.com/andersonor124/InvestmentApp.git StockSmart
+```
+
+```bash
+cd StockSmart
+```
+
+Install the dependencies. Run this in the top folder (the one with `package.json`, `client/` and `server/`); one install covers both. The command is `npm install`, not `npm run install`.
 
 ```bash
 npm install
 ```
 
+### 2. Start the app
+
 ```bash
-cp .env.example .env   # optional: add keys (see below)
+npm run dev
+```
+
+Open **http://localhost:5173** in your browser. Press `Ctrl+C` in the terminal to stop.
+
+The app works straight away with **sample data** (a yellow banner says so). Prices are illustrative and move a little each day so the practice portfolio still changes.
+
+### 3. Optional: live market data and the AI tutor
+
+Create your settings file in the top folder:
+
+```bash
+cp .env.example .env
+```
+
+Open it (on a Mac, `open -e .env` opens it in TextEdit) and paste your keys after the `=` signs, with no spaces or quotes:
+
+```
+FINNHUB_API_KEY=your_finnhub_key
+ANTHROPIC_API_KEY=your_anthropic_key
+```
+
+| Variable | Enables | Where to get it |
+|---|---|---|
+| `FINNHUB_API_KEY` | Live quotes, fundamentals, analyst ratings, earnings dates, insider trades and news | Free at [finnhub.io/register](https://finnhub.io/register) |
+| `ANTHROPIC_API_KEY` | The "Ask Penny" AI tutor (paid per question) | [console.anthropic.com](https://console.anthropic.com) |
+
+Save the file, then restart the app (`Ctrl+C`, then `npm run dev`). The terminal should print:
+
+```
+Live market data: Finnhub
+```
+
+With a live key, the first full load takes about 2 minutes: the free plan allows 60 requests a minute, so the server fills in stocks in the background and caches them. Prices are ~15 minutes delayed, in USD.
+
+`.env` is listed in `.gitignore`, so your keys are never uploaded to GitHub. Treat them like passwords.
+
+### 4. Getting updates
+
+```bash
+git pull
 ```
 
 ```bash
-npm run dev            # API on :3001, app on http://localhost:5173
+npm install
 ```
 
-The app runs **without any keys**. It then uses bundled, clearly labelled *sample data*, with simulated daily price moves so the practice portfolio still changes.
+Then `npm run dev` again.
 
-| Variable | Enables |
+### Troubleshooting
+
+| Problem | Fix |
 |---|---|
-| `FINNHUB_API_KEY` | Live quotes, fundamentals, analyst ratings, earnings dates, insider trades and news. Get a free key at [finnhub.io](https://finnhub.io/register). The free tier allows 60 calls/min, so the server caches responses and warms data in the background (~2 min for the full list). |
-| `ANTHROPIC_API_KEY` | The "Ask Penny" AI tutor. |
+| `Could not read package.json` | You're not in the project's top folder, or your copy is out of date. Run `ls`: you should see `package.json`, `client` and `server`. If not, `cd` into the right folder or run `git pull`. |
+| `command not found: npm` | Install Node.js 22+ from [nodejs.org](https://nodejs.org), then open a new terminal. |
+| Terminal still says `No FINNHUB_API_KEY` | Check the key is saved: `grep FINNHUB .env` should print it. The file must be named exactly `.env` (not `.env.txt`) and sit in the top folder. Restart `npm run dev` after any change. |
+| `EADDRINUSE: address already in use :::3001` | The app is already running in another terminal. Stop that one with `Ctrl+C` (or close it) and try again. |
+| Pages show "Couldn't load data" | The server part isn't running. Make sure you started with `npm run dev` (not just `vite`). |
 
 ### Production
 
