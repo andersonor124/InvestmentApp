@@ -31,7 +31,8 @@ A web app with two modes:
 | Investor profile quiz | Sets conservative / balanced / aggressive weights and suggests a stock/bond mix with Canadian all-in-one ETFs. |
 | Market dashboard | Index proxies (SPY, QQQ, DIA, EWC), sector heatmap, and where the model sees opportunity. |
 | Watchlist | Buy-below / sell-above price alerts and a diversification checker (concentration, sector weight, home bias). |
-| Tax & accounts 🍁 | TFSA, RRSP, FHSA, RESP, non-registered; 50% capital gains inclusion, superficial loss rule, dividend tax credit, US withholding tax, T1135, currency costs, and an asset-location cheat sheet. |
+| Tax & accounts 🍁 Canada | TFSA, RRSP, FHSA, RESP, non-registered; 50% capital gains inclusion, superficial loss rule, dividend tax credit, US withholding tax, T1135, currency costs, and an asset-location cheat sheet. |
+| Tax & accounts 🇭🇰 Hong Kong | MPF and TVC, brokerage accounts; no capital gains or dividend tax, when frequent trading becomes taxable profits, 30% US dividend withholding, Mainland dividend withholding, stamp duty and trading levies, the HKD–USD peg, and HK-listed / Ireland-domiciled ETF building blocks. Choose your country on the Tax & Accounts page; stock tips and the profile page follow that choice. |
 
 ## How to run it
 

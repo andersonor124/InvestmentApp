@@ -190,12 +190,16 @@ export default function StockDetail() {
                 <li>
                   <strong>{etf.us}</strong>: {etf.usName} (US-listed, USD)
                 </li>
-                {etf.ca && (
+                {investor.region === "CA" && etf.ca && (
                   <li>
                     <strong>{etf.ca}</strong>: {etf.caName} (TSX-listed, CAD) 🍁
                   </li>
                 )}
-                <li className="text-muted">Or skip sector bets entirely: an all-in-one ETF such as XEQT / VEQT owns thousands of companies worldwide.</li>
+                <li className="text-muted">
+                  {investor.region === "HK"
+                    ? "Or skip sector bets entirely: a global ETF such as VWRA (Ireland-domiciled) owns thousands of companies worldwide, with lower US dividend withholding than US-listed ETFs."
+                    : "Or skip sector bets entirely: an all-in-one ETF such as XEQT / VEQT owns thousands of companies worldwide."}
+                </li>
               </ul>
             </Card>
           )}
@@ -207,7 +211,11 @@ export default function StockDetail() {
               {stock.price ? ` (≈ ${Math.floor((20000 * cap) / 100 / stock.price)} shares)` : ""}.
             </p>
             {stock.country === "US" && stock.dividendYield !== null && stock.dividendYield > 1 && (
-              <p className="mt-2 text-sm text-muted">🍁 Tip: US dividends lose 15% to US withholding tax in a TFSA but not in an RRSP.</p>
+              <p className="mt-2 text-sm text-muted">
+                {investor.region === "HK"
+                  ? `🇭🇰 Tip: as a Hong Kong resident, 30% of this stock's dividend is withheld by the US, so the ${pct(stock.dividendYield, 1)} yield is about ${pct(stock.dividendYield * 0.7, 1)} after tax.`
+                  : "🍁 Tip: US dividends lose 15% to US withholding tax in a TFSA but not in an RRSP."}
+              </p>
             )}
           </Card>
         </div>
