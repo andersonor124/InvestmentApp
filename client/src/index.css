@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-gain: var(--gain);
+  --color-loss: var(--loss);
+  --color-warn: var(--warn);
+  --color-gain-soft: var(--gain-soft);
+  --color-loss-soft: var(--loss-soft);
+  --color-warn-soft: var(--warn-soft);
+  --color-series-1: var(--series-1);
+  --color-series-2: var(--series-2);
+  --color-series-3: var(--series-3);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #eef0f7;
+  --text: #141a2b;
+  --muted: #5b6478;
+  --line: #dde1ec;
+  --accent: #5b4bdb;
+  --accent-soft: #ece9ff;
+  --accent-ink: #ffffff;
+  --gain: #0f8a4f;
+  --loss: #c8323b;
+  --warn: #b26a00;
+  --gain-soft: #e3f6ec;
+  --loss-soft: #fde8ea;
+  --warn-soft: #fff3dc;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --grid: #e6e8ef;
+  color-scheme: light;
+}
+
+:root[data-mode="adult"] {
+  --accent: #1f5fbf;
+  --accent-soft: #e5eefb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e111a;
+    --surface: #161a26;
+    --surface-2: #1e2332;
+    --text: #e8ebf3;
+    --muted: #9aa3b8;
+    --line: #2a3043;
+    --accent: #8f82ff;
+    --accent-soft: #262245;
+    --accent-ink: #0e111a;
+    --gain: #3fcf8a;
+    --loss: #ff6b74;
+    --warn: #f2b04b;
+    --gain-soft: #12301f;
+    --loss-soft: #3a1a1e;
+    --warn-soft: #33270f;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --grid: #262b3b;
+    color-scheme: dark;
+  }
+  :root:not([data-theme="light"])[data-mode="adult"] {
+    --accent: #6ea8ff;
+    --accent-soft: #1a2640;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Recharts tooltip readability in both themes */
+.recharts-default-tooltip {
+  background: var(--surface) !important;
+  border-color: var(--line) !important;
+  border-radius: 8px;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop { animation: pop 180ms ease-out; }
+
+input[type="range"] { accent-color: var(--accent); }
