@@ -33,6 +33,7 @@ A web app with two modes:
 | Watchlist | Buy-below / sell-above price alerts and a diversification checker (concentration, sector weight, home bias). |
 | Tax & accounts 🍁 Canada | TFSA, RRSP, FHSA, RESP, non-registered; 50% capital gains inclusion, superficial loss rule, dividend tax credit, US withholding tax, T1135, currency costs, and an asset-location cheat sheet. |
 | Tax & accounts 🇭🇰 Hong Kong | MPF and TVC, brokerage accounts; no capital gains or dividend tax, when frequent trading becomes taxable profits, 30% US dividend withholding, Mainland dividend withholding, stamp duty and trading levies, the HKD–USD peg, and HK-listed / Ireland-domiciled ETF building blocks. Choose your country on the Tax & Accounts page; stock tips and the profile page follow that choice. |
+| Moving Canada → Hong Kong | The Canada–Hong Kong tax treaty (withholding rates, residency tie-breaker), and a step-by-step checklist that saves your progress: becoming a non-resident of Canada, the departure-year return and departure tax, what to do with TFSA/RRSP/FHSA/RESP and rental property, settling in Hong Kong (HKID, MPF, salaries tax), yearly filing, and moving back. Also covers moving money between the two places and common mistakes. |
 
 ## How to run it
 

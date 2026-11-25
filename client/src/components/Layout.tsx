@@ -23,6 +23,7 @@ const ADULT_NAV = [
   { to: "/adult/watchlist", label: "Watchlist" },
   { to: "/adult/profile", label: "My Profile" },
   { to: "/adult/canada", label: "Tax & Accounts 🍁🇭🇰" },
+  { to: "/adult/moving", label: "Moving CA → HK" },
 ];
 
 export function Layout() {

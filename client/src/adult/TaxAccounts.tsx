@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, PageHeader } from "../components/ui";
 import { ACCOUNTS, LAST_REVIEWED, TAX_RULES, type AccountInfo, type TaxRule } from "../content/canada";
 import { HK_ACCOUNTS, HK_LAST_REVIEWED, HK_PLACEMENT, HK_TAX_RULES } from "../content/hongkong";
@@ -46,6 +47,14 @@ export default function TaxAccounts() {
       >
         <RegionSwitch />
       </PageHeader>
+
+      <Link to="/adult/moving" className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/40 bg-accent-soft p-4 transition hover:shadow-sm">
+        <span>
+          <span className="block font-semibold">🍁 ➜ 🇭🇰 Moving from Canada to Hong Kong?</span>
+          <span className="block text-sm text-muted">Residency, tax filing in both places, the Canada–Hong Kong tax treaty, and moving your money, with a step-by-step checklist.</span>
+        </span>
+        <span className="text-sm font-semibold text-accent">Open the guide →</span>
+      </Link>
 
       {hk ? <HongKong /> : <Canada />}
     </div>
