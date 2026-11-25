@@ -33,6 +33,7 @@ A web app with two modes:
 | Watchlist | Buy-below / sell-above price alerts and a diversification checker (concentration, sector weight, home bias). |
 | Tax & accounts 🍁 Canada | TFSA, RRSP, FHSA, RESP, non-registered; 50% capital gains inclusion, superficial loss rule, dividend tax credit, US withholding tax, T1135, currency costs, and an asset-location cheat sheet. |
 | Tax & accounts 🇭🇰 Hong Kong | MPF and TVC, brokerage accounts; no capital gains or dividend tax, when frequent trading becomes taxable profits, 30% US dividend withholding, Mainland dividend withholding, stamp duty and trading levies, the HKD–USD peg, and HK-listed / Ireland-domiciled ETF building blocks. Choose your country on the Tax & Accounts page; stock tips and the profile page follow that choice. |
+| Moving Canada → Hong Kong | The Canada–Hong Kong tax treaty (withholding rates, residency tie-breaker), and a step-by-step checklist that saves your progress: becoming a non-resident of Canada, the departure-year return and departure tax, what to do with TFSA/RRSP/FHSA/RESP and rental property, settling in Hong Kong (HKID, MPF, salaries tax), yearly filing, and moving back. Also covers moving money between the two places and common mistakes. |
 
 ## How to run it
 
@@ -120,6 +121,7 @@ Then `npm run dev` again.
 | `command not found: npm` | Install Node.js 22+ from [nodejs.org](https://nodejs.org), then open a new terminal. |
 | Terminal still says `No FINNHUB_API_KEY` | Check the key is saved: `grep FINNHUB .env` should print it. The file must be named exactly `.env` (not `.env.txt`) and sit in the top folder. Restart `npm run dev` after any change. |
 | `EADDRINUSE: address already in use :::3001` | The app is already running in another terminal. Stop that one with `Ctrl+C` (or close it) and try again. |
+| Browser shows `Cannot GET /` or a "data server" page | You opened port 3001 (the data server). Open **http://localhost:5173** instead. |
 | Pages show "Couldn't load data" | The server part isn't running. Make sure you started with `npm run dev` (not just `vite`). |
 
 ### Production

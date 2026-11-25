@@ -10,6 +10,7 @@ const Profile = lazy(() => import("./adult/Profile"));
 const Screener = lazy(() => import("./adult/Screener"));
 const StockDetail = lazy(() => import("./adult/StockDetail"));
 const TaxAccounts = lazy(() => import("./adult/TaxAccounts"));
+const MovingCaHk = lazy(() => import("./adult/MovingCaHk"));
 const CompanyCheckup = lazy(() => import("./student/CompanyCheckup"));
 const Flashcards = lazy(() => import("./student/Flashcards"));
 const Glossary = lazy(() => import("./student/Glossary"));
@@ -46,6 +47,7 @@ export default function App() {
           <Route path="watchlist" element={<Alerts />} />
           <Route path="profile" element={<Profile />} />
           <Route path="canada" element={<TaxAccounts />} />
+          <Route path="moving" element={<MovingCaHk />} />
         </Route>
         <Route path="*" element={<Landing />} />
       </Route>

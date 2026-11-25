@@ -1,5 +1,6 @@
 import "./env.js";
 import express from "express";
+import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { RiskProfile, ScreenerResponse, StatusResponse } from "../../shared/types.js";
@@ -101,11 +102,21 @@ app.get(
 
 app.post("/api/tutor", tutorHandler);
 
-// In production, serve the built client.
-if (process.env.NODE_ENV === "production") {
-  const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../client/dist");
+// In production, serve the built client. In development the website is served
+// by Vite on :5173, so point anyone who opens this port in a browser there.
+const dist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../client/dist");
+const hasBuild = fs.existsSync(path.join(dist, "index.html"));
+if (process.env.NODE_ENV === "production" && hasBuild) {
   app.use(express.static(dist));
   app.get(/^(?!\/api).*/, (_req, res) => res.sendFile(path.join(dist, "index.html")));
+} else {
+  app.get(/^(?!\/api).*/, (_req, res) => {
+    const hint =
+      process.env.NODE_ENV === "production"
+        ? "The website hasn't been built yet. Run <code>npm run build</code>, then <code>npm start</code> again."
+        : 'This is the StockSmart data server. Open the app at <a href="http://localhost:5173">http://localhost:5173</a>.';
+    res.type("html").send(`<!doctype html><meta charset="utf-8"><title>StockSmart</title><body style="font-family:system-ui;padding:2rem"><h1>📈 StockSmart</h1><p>${hint}</p></body>`);
+  });
 }
 
 const port = Number(process.env.PORT) || 3001;
