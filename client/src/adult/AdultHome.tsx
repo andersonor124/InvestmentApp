@@ -125,8 +125,12 @@ export default function AdultHome() {
               </Link>
             </Card>
             <Card>
-              <div className="text-sm text-muted">🍁 Investing from Canada?</div>
-              <p className="mt-1 text-sm">Where you hold a stock (TFSA, RRSP, FHSA or taxable) can matter as much as which stock you pick.</p>
+              <div className="text-sm text-muted">{investor.region === "HK" ? "🇭🇰 Investing from Hong Kong?" : "🍁 Investing from Canada?"}</div>
+              <p className="mt-1 text-sm">
+                {investor.region === "HK"
+                  ? "No capital gains tax, but watch stamp duty, MPF fees and the 30% US dividend withholding."
+                  : "Where you hold a stock (TFSA, RRSP, FHSA or taxable) can matter as much as which stock you pick."}
+              </p>
               <Link to="/adult/canada" className="mt-2 inline-block text-sm font-semibold text-accent">
                 Tax & accounts guide →
               </Link>

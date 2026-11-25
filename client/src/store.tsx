@@ -25,8 +25,11 @@ export interface WatchItem {
   shares: number | null; // optional real position size, for the diversification checker
 }
 
+export type Region = "CA" | "HK";
+
 export interface InvestorProfile {
   risk: RiskProfile;
+  region: Region; // where the investor lives: drives tax/account tips
   answers: Record<string, number>;
   completed: boolean;
 }
@@ -60,7 +63,7 @@ export function useStore(): Store {
   return s;
 }
 
-const defaultInvestor: InvestorProfile = { risk: "balanced", answers: {}, completed: false };
+const defaultInvestor: InvestorProfile = { risk: "balanced", region: "CA", answers: {}, completed: false };
 
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [progress, setProgress] = useState<Progress>(() => load("progress", emptyProgress()));

@@ -4,6 +4,8 @@ import { PROFILE_WEIGHTS } from "../../../shared/constants";
 import type { FactorKey, RiskProfile } from "../../../shared/types";
 import { Button, Card, PageHeader } from "../components/ui";
 import { ALLOCATIONS, CORE_CANADIAN_ETFS } from "../content/canada";
+import { HK_CORE_ETFS } from "../content/hongkong";
+import { RegionSwitch } from "./TaxAccounts";
 import { useStore } from "../store";
 import { FACTOR_INFO } from "./common";
 
@@ -33,7 +35,7 @@ export default function Profile() {
 
   function save() {
     const risk = riskFromAnswers(answers);
-    setInvestor({ risk, answers, completed: true });
+    setInvestor({ ...investor, risk, answers, completed: true });
     setEditing(false);
     toast({ emoji: "🎯", title: `Profile saved: ${risk}`, body: "Your stock scores now use these weights." });
   }
@@ -99,7 +101,11 @@ export default function Profile() {
                 {alloc.cash > 0 && <span><span className="mr-1 inline-block h-2.5 w-2.5 rounded-full bg-series-3" />Cash {alloc.cash}%</span>}
               </div>
               <p className="mt-3 text-sm">
-                🍁 One-ticket Canadian example: <strong>{alloc.example}</strong>. Individual stocks from the picks list are best kept to a slice of the stock portion, with no single stock above <strong>{alloc.singleStockCap}%</strong> of your total portfolio.
+                {investor.region === "HK" ? (
+                  <>🇭🇰 Simple Hong Kong approach: a global stock ETF (e.g. VWRA) plus HKD/USD bonds or time deposits in the proportions above, alongside your MPF.</>
+                ) : (
+                  <>🍁 One-ticket Canadian example: <strong>{alloc.example}</strong>.</>
+                )} Individual stocks from the picks list are best kept to a slice of the stock portion, with no single stock above <strong>{alloc.singleStockCap}%</strong> of your total portfolio.
               </p>
             </Card>
 
@@ -123,10 +129,13 @@ export default function Profile() {
             </Card>
 
             <Card>
-              <h2 className="text-lg font-bold">Core building blocks (Canada)</h2>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h2 className="text-lg font-bold">Core building blocks ({investor.region === "HK" ? "Hong Kong" : "Canada"})</h2>
+                <RegionSwitch />
+              </div>
               <table className="mt-3 w-full text-sm">
                 <tbody>
-                  {CORE_CANADIAN_ETFS.map((e) => (
+                  {(investor.region === "HK" ? HK_CORE_ETFS : CORE_CANADIAN_ETFS).map((e) => (
                     <tr key={e.symbol} className="border-t border-line first:border-0">
                       <td className="py-2 pr-3 font-semibold">{e.symbol}</td>
                       <td className="py-2">{e.name}</td>
