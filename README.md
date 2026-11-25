@@ -120,6 +120,7 @@ Then `npm run dev` again.
 | `command not found: npm` | Install Node.js 22+ from [nodejs.org](https://nodejs.org), then open a new terminal. |
 | Terminal still says `No FINNHUB_API_KEY` | Check the key is saved: `grep FINNHUB .env` should print it. The file must be named exactly `.env` (not `.env.txt`) and sit in the top folder. Restart `npm run dev` after any change. |
 | `EADDRINUSE: address already in use :::3001` | The app is already running in another terminal. Stop that one with `Ctrl+C` (or close it) and try again. |
+| Browser shows `Cannot GET /` or a "data server" page | You opened port 3001 (the data server). Open **http://localhost:5173** instead. |
 | Pages show "Couldn't load data" | The server part isn't running. Make sure you started with `npm run dev` (not just `vite`). |
 
 ### Production
